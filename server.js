@@ -5,18 +5,18 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const API_KEY = "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";
+const API_KEY = "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";
 
 app.post("/completions", async (req, res) => {
   const options = {
     method: "POST",
     headers: {
-      Authorication: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "how are you?" }],
+      messages: [{ role: "user", content: req.body.message }],
       max_tokens: 100,
     }),
   };
